@@ -13,6 +13,7 @@ app.listen(8080, () => console.log('Server Up'))
 //     res.send('<h1 style="color: blue;">Hola Mundo!!</h1>')
 // })
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
+app.use('/static', express.static('public'))
 app.use('/users', usersRouter)
 // app.use('/products', productsRouter)
