@@ -8,9 +8,11 @@ let users = []
 
 app.listen(8080, () => console.log('Server Up'))
 
-app.get('/', (req, res) => {
-    res.send('Hola Mundo!!')
-})
+// app.get('/', (req, res) => {
+//     // res.send('Hola Mundo!!')
+//     res.send('<h1 style="color: blue;">Hola Mundo!!</h1>')
+// })
 
+app.use(express.static('public'))
 app.use('/users', usersRouter)
 // app.use('/products', productsRouter)
