@@ -1,6 +1,7 @@
 const express = require('express')
 const usersRouter = require('./router/users.router')
 const petsRouter = require('./router/pets.router')
+const multer = require('multer')
 
 const app = express()
 
@@ -25,6 +26,22 @@ function ejecutaAlgo(req, res, next) {
 
 // app.use(express.static('public'))
 app.use('/contenido', express.static('public'))
-app.use(ejecutaAlgo)
+// app.use(ejecutaAlgo)
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'public/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+const uploader = multer({storage})
+
+app.post('/', uploader.single('avatar'), (req, res) => {
+    res.send('File uploaded!')
+})
+
 app.use('/users', usersRouter)
 app.use('/pets', petsRouter)
