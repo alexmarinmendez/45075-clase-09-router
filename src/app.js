@@ -14,6 +14,6 @@ app.listen(8080, () => console.log('Server Up'))
 // })
 
 // app.use(express.static('public'))
-app.use('/static', express.static('public'))
+app.use('/contenido', express.static('public'))
 app.use('/users', usersRouter)
 // app.use('/products', productsRouter)
